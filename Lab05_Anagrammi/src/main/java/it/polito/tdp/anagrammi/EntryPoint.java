@@ -1,21 +1,27 @@
 package it.polito.tdp.anagrammi;
 
+import it.polito.tdp.anagrammi.model.Model;
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
 public class EntryPoint extends Application {
-
+	
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+    	
+    	Model model=new Model();
+    	FXMLController controller;
+    	FXMLLoader loader= new FXMLLoader(getClass().getResource("/fxml/Scene.fxml"));
+        Parent root = loader.load();
         
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
+        
+        controller=loader.getController();
+        controller.setModel(model);
         
         stage.setTitle("JavaFX and Maven");
         stage.setScene(scene);
